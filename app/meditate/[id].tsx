@@ -38,8 +38,10 @@ const Meditate = () => {
 
   useEffect(() => {
     return () => {
-      setSecondRemaining(10);
-      audioSound?.unloadAsync();
+      if (audioSound) {
+        audioSound?.unloadAsync();
+        setSecondRemaining(10);
+      }
     };
   }, [audioSound]);
 
@@ -72,7 +74,6 @@ const Meditate = () => {
 
   const handleAdjustDuration = () => {
     if (isMeditating) toggleMeditationSessionStatus();
-
     router.push('/(modal)/adjust-meditation-duration');
   };
 
